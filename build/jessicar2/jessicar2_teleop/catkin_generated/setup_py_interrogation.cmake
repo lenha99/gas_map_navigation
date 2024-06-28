@@ -1,0 +1,7 @@
+set(jessicar2_teleop_SETUP_PY_SETUP_MODULE "distutils.core")
+set(jessicar2_teleop_SETUP_PY_VERSION "0.0.1")
+set(jessicar2_teleop_SETUP_PY_SCRIPTS "")
+set(jessicar2_teleop_SETUP_PY_PACKAGES "jessicar2_teleop")
+set(jessicar2_teleop_SETUP_PY_PACKAGE_DIRS "src/jessicar2_teleop")
+set(jessicar2_teleop_SETUP_PY_MODULES "")
+set(jessicar2_teleop_SETUP_PY_MODULE_DIRS "")

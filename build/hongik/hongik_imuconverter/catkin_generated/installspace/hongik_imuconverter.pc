@@ -1,0 +1,8 @@
+prefix=/home/kyumin/catkin_ws/install
+
+Name: hongik_imuconverter
+Description: Description of hongik_imuconverter
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
