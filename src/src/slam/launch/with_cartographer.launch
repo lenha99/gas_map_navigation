@@ -1,0 +1,34 @@
+<launch>
+
+
+<node pkg="tf" type="static_transform_publisher" name="baselink_to_laserlink"     args="0 0 0 3.141592 0 0  base_link laser 30" />
+
+<include file="$(find jessicar2_bringup)/launch/arduinouno.launch" />
+
+<include file="$(find slam)/launch/my_robot.launch" /> 
+
+
+<!-- Subscribe: /initialpose, /move_base_simple/goal -->
+  <!-- Publish: /initial_2d, /goal_2d -->
+  <node pkg="jessicar2_localization" type="rviz_click_to_2d" name="rviz_click_to_2d" />
+
+
+
+
+
+                
+
+ <!-- Move Base Node -->
+  <!-- Subscribe: /move_base_simple/goal -->
+  <!-- Publish: /cmd_vel -->
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+    <param name="base_local_planner" value="teb_local_planner/TebLocalPlannerROS" />
+    <rosparam file="$(find jessicar2_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find jessicar2_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find jessicar2_navigation)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find jessicar2_navigation)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find jessicar2_navigation)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find jessicar2_navigation)/param/teb_local_planner.yaml" command="load" />
+  </node>
+
+</launch>

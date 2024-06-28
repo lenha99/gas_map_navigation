@@ -1,0 +1,7 @@
+set(hongik_teleop_SETUP_PY_SETUP_MODULE "distutils.core")
+set(hongik_teleop_SETUP_PY_VERSION "0.0.1")
+set(hongik_teleop_SETUP_PY_SCRIPTS "")
+set(hongik_teleop_SETUP_PY_PACKAGES "hongik_teleop")
+set(hongik_teleop_SETUP_PY_PACKAGE_DIRS "src/hongik_teleop")
+set(hongik_teleop_SETUP_PY_MODULES "")
+set(hongik_teleop_SETUP_PY_MODULE_DIRS "")

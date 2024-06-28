@@ -1,0 +1,21 @@
+<!-- icp_odometry.launch --> <launch>
+  <!-- TF 설정: LiDAR와 로봇 베이스 링크 간의 변환 -->
+  <node pkg="tf" type="static_transform_publisher" name="base_to_laser" 
+args="0 0 0 0 0 0 base_link laser 100"/>
+  <!-- RTAB-Map Odometry 노드 실행 (ICP 기반) -->
+  <node pkg="rtabmap_ros" type="icp_odometry" name="icp_odometry" 
+output="screen">
+    <param name="frame_id" value="base_link"/>
+    <param name="odom_frame_id" value="odom"/>
+    <param name="scan_topic" value="/scan"/>
+    <param name="wait_for_transform_duration" value="0.2"/>
+    <param name="icp_correction_scale" value="1.0"/>
+    <param name="icp_correction_angle" value="1.0"/>
+    <param name="icp_point_to_plane" value="true"/>
+    <param name="icp_point_to_plane_distance" value="0.1"/>
+    <param name="icp_epsilon" value="0.00001"/>
+    <param name="icp_max_iterations" value="30"/>
+    <param name="icp_max_correspondence_distance" value="0.5"/>
+    <param name="icp_point_to_plane_k" value="20"/>
+  </node>
+</launch>

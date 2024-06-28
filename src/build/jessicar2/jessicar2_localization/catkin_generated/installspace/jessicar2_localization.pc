@@ -1,0 +1,8 @@
+prefix=/home/kyumin/catkin_ws/install
+
+Name: jessicar2_localization
+Description: Description of jessicar2_localization
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

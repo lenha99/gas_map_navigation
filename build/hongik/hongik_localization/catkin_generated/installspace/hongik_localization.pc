@@ -1,0 +1,8 @@
+prefix=/home/kyumin/catkin_ws/install
+
+Name: hongik_localization
+Description: Description of hongik_localization
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

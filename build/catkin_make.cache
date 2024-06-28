@@ -1,0 +1,2 @@
+cartographer_position:hongik/hongik_bringup:hongik/hongik_imuconverter:hongik/hongik_localization:hongik/hongik_navigation:hongik/hongik_teleop:hongik/mpu_6050_driver:rf2o_laser_odometry:rplidar_ros:slam
+-DCATKIN_DEVEL_PREFIX=/home/kyumin/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/kyumin/catkin_ws/install -G Unix Makefiles

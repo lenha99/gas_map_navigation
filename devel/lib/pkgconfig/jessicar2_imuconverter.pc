@@ -1,0 +1,8 @@
+prefix=/home/kyumin/catkin_ws/devel
+
+Name: jessicar2_imuconverter
+Description: Description of jessicar2_imuconverter
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

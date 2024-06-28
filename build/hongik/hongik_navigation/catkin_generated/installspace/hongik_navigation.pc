@@ -1,0 +1,8 @@
+prefix=/home/kyumin/catkin_ws/install
+
+Name: hongik_navigation
+Description: Description of hongik_navigation
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

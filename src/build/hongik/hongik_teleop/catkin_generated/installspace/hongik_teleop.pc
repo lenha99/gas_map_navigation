@@ -1,0 +1,8 @@
+prefix=/home/kyumin/catkin_ws/install
+
+Name: hongik_teleop
+Description: Description of hongik_teleop
+Version: 0.0.1
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy geometry_msgs sensor_msgs

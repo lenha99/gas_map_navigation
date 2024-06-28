@@ -1,0 +1,37 @@
+<launch>
+                <!-- Load robot description and start state publisher-->
+
+    <param name="robot_description" textfile="$(find slam)/urdf/head_2d.urdf" />
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+
+
+
+                <!-- Start Google Cartographer node with custom configuration file-->
+ <node name="cartographer_node" pkg="cartographer_ros" type="cartographer_node" args="
+          -configuration_directory $(find slam)/lua
+          -configuration_basename cartographer_odom.lua
+          -load_state_filename $(find jessicar2_navigation)/maps/second_map.pbstream" output="screen">
+  </node>
+  <include file="$(find jessicar2_bringup)/launch/arduinouno.launch" />
+  
+
+  <!-- Subscribe: /initialpose, /move_base_simple/goal -->
+  <!-- Publish: /initial_2d, /goal_2d -->
+  <node pkg="jessicar2_localization" type="rviz_click_to_2d" name="rviz_click_to_2d" />
+
+  <!-- Map File -->
+<node name="map_server" pkg="map_server" type="map_server" args="$(find jessicar2_navigation)/maps/second_map.yaml"/>
+
+  <!-- Map Server -->
+  <!-- Publish: /map, /map_metadata -->
+
+ <!-- Move Base Node -->
+  <!-- Subscribe: /move_base_simple/goal -->
+  <!-- Publish: /cmd_vel -->
+
+                
+
+</launch>
+
+
