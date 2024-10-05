@@ -1,0 +1,58 @@
+<launch>
+
+  <!-- Argument 정의 -->
+  <arg name="odom_frame" default="odom_combined"/>
+  <arg name="base_frame" default="base_footprint"/>
+  <arg name="map_frame" default="map"/>
+
+  <!-- Static TF Publisher 노드들 -->
+  <node pkg="tf" type="static_transform_publisher" name="baselink_to_laserlink" args="0.03 0 0.00 0 0 0 base_link laser_link 30" />
+  <node pkg="tf" type="static_transform_publisher" name="basefootprint_to_baselink" args="0.00 0 0.02 0 0 0 base_footprint base_link 30" />
+  <node pkg="tf" type="static_transform_publisher" name="baselink_to_imulink" args="0.03 0 0.06 0 0 0 base_link imu_link 30" />
+
+  <!-- Robot Localization 노드 -->
+  <node pkg="robot_localization" type="ekf_localization_node" name="ekf_localization" output="screen">
+    <param name="odom_frame" value="$(arg odom_frame)" />
+    <param name="base_link_frame" value="$(arg base_frame)" />
+    <param name="world_frame" value="$(arg map_frame)" />
+    <param name="two_d_mode" value="true" />
+    <param name="frequency" value="50" />
+  </node>
+
+  <!-- Include: Arduino Uno Launch -->
+  <include file="$(find hongik_bringup)/launch/arduinouno.launch" />
+  
+  <!-- Include: Load URDF -->
+  <include file="$(find hongik_description)/launch/loadUrdf.launch" />
+
+  <!-- Geotiff Mapper Launch -->
+  <arg name="geotiff_map_file_path" default="$(find hector_geotiff)/maps"/>
+  <include file="$(find hector_geotiff_launch)/launch/geotiff_mapper.launch">
+    <arg name="trajectory_source_frame_name" value="scanmatcher_frame"/>
+    <arg name="map_file_path" value="$(arg geotiff_map_file_path)"/>
+  </include>
+
+  <!-- RViz Click to 2D -->
+  <node pkg="hongik_localization" type="rviz_click_to_2d" name="rviz_click_to_2d" />
+
+  <!-- SLAM Mapping -->
+  <include file="$(find slam)/launch/mapping_default.launch"/>
+  
+  <!-- Remap odom topic -->
+  <remap from="odom" to="odom_combined"/>
+
+
+
+
+
+  <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+  <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS" />
+    <rosparam file="$(find hongik_navigation)/param/costmap_common_params.yaml" command="load" ns="global_costmap" />
+    <rosparam file="$(find hongik_navigation)/param/costmap_common_params.yaml" command="load" ns="local_costmap" />
+    <rosparam file="$(find hongik_navigation)/param/local_costmap_params.yaml" command="load" />
+    <rosparam file="$(find hongik_navigation)/param/global_costmap_params.yaml" command="load" />
+    <rosparam file="$(find hongik_navigation)/param/move_base_params.yaml" command="load" />
+    <rosparam file="$(find hongik_navigation)/param/dwa_local_planner_params.yaml" command="load" />
+  </node>
+</launch>
+

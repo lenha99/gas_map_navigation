@@ -1,0 +1,9 @@
+<launch>
+<!-- Initial Pose and Goal Publisher -->
+<!-- Publish: /initialpose, /move_base_simple/goal -->
+  
+ <param name="use_sim_time" value="true"/>
+  <node pkg="rviz" type="rviz" name="rviz" args="-d /home/ubuntu/catkin_ws/0819.rviz">
+  </node> 
+
+</launch>

@@ -1,0 +1,35 @@
+teb_local_planner:
+  # Odom topic configuration
+  odom_topic: ""  # odom 토픽을 사용하지 않도록 설정
+
+  # Robot configuration parameters
+  footprint_model:
+    type: "circular"
+    radius: 0.2  # 로봇의 반지름을 정의
+  max_vel_x: 0.4  # 최대 선속도 설정 (m/s)
+  max_vel_theta: 0.3  # 최대 각속도 설정 (rad/s)
+  min_turning_radius: 0.2  # 최소 회전 반경 설정 (m)
+
+  # Trajectory scoring parameters
+  path_distance_bias: 64.0  # 경로 거리 편향 설정
+  goal_distance_bias: 24.0  # 목표 거리 편향 설정
+  occdist_scale: 0.01  # 장애물 거리 가중치 설정
+  forward_point_distance: 0.32  # 전방 점 거리 설정 (m)
+  stop_time_buffer: 0.2  # 정지 시간 버퍼 설정 (s)
+  scaling_speed: 0.25  # 속도 스케일링 설정
+  max_scaling_factor: 0.2  # 최대 스케일링 계수 설정
+
+  # Oscillation prevention parameters
+  oscillation_reset_dist: 0.01  # 진동 초기화 거리 설정 (m)
+
+  # Optimization parameters
+  no_inner_iterations: 5  # 내부 반복 횟수 설정
+  full_robot_model: true  # 전체 로봇 모델 사용 여부 설정
+
+  # Visualization parameters
+  visualize_homing_axes: false  # 홈 축 시각화 설정
+
+  # Control parameters
+  min_obstacle_dist: 0.3  # 최소 장애물 거리 설정 (m)
+  include_costmap_obstacles: true  # 코스트맵 장애물 포함 여부 설정
+  
