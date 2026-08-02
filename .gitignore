@@ -1,0 +1,13 @@
+# catkin 빌드 산출물 — catkin_make 로 언제든 재생성됨
+build/
+devel/
+install/
+logs/
+
+# 파이썬
+*.pyc
+__pycache__/
+
+# 에디터 임시 파일
+*.swp
+*~
